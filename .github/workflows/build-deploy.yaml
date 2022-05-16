@@ -20,7 +20,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/ctse_inventory:${{ github.sha }}
+        tags: ${{ secrets.DOCKER_USERNAME }}/ctseinventory:${{ github.sha }}
     - name: Update config files in k8s
       run: sed -i.bak 's/{{tag}}/${{ github.sha }}/g' k8s/deploy.yaml  && rm k8s/*.bak
     - uses: actions-hub/kubectl@master
