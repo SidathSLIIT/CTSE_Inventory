@@ -5,7 +5,7 @@ const inventoryModel = require("../models/Inventory");
 const Error = require("../utils/error_response");
 
 //Insert
-router.post("/inventory/inventory-insert", async (req, res, next) => {
+router.post("/inventory", async (req, res, next) => {
   const {
     inventoryName,
     inventoryCount,
@@ -33,7 +33,7 @@ router.post("/inventory/inventory-insert", async (req, res, next) => {
 });
 
 //Retrive
-router.get("/inventory/inventories", (req, res, next) => {
+router.get("/inventory", (req, res, next) => {
   inventoryModel.find().exec((err, inventories) => {
     if (err) {
       return next(new Error("Can not find any inventory!", 400));
@@ -46,7 +46,7 @@ router.get("/inventory/inventories", (req, res, next) => {
 });
 
 // Retrive specific data by name
-router.get("/inventory/inventorydata/:id", (req, res,next) => {
+router.get("/inventory/:id", (req, res,next) => {
   const inventoryid = req.params.id;
   inventoryModel.findById(inventoryid, (err, inventory) => {
     if (err) {
@@ -60,7 +60,7 @@ router.get("/inventory/inventorydata/:id", (req, res,next) => {
 });
 
 //Update
-router.put("/inventory/updateinventory/:id", (req, res, next) => {
+router.put("/inventory/:id", (req, res, next) => {
   inventoryModel.findByIdAndUpdate(
     req.params.id,
     {
@@ -79,7 +79,7 @@ router.put("/inventory/updateinventory/:id", (req, res, next) => {
 });
 
 //Delete
-router.delete("/inventory/deleteinventory/:id", (req, res, next) => {
+router.delete("/inventory/:id", (req, res, next) => {
   inventoryModel
     .findByIdAndRemove(req.params.id)
     .exec((err, deleteinventory) => {
