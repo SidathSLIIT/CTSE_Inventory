@@ -6,7 +6,7 @@ const errorHandler = require('./middleware/error_handler');
 const ConnectDB = require('./database/ctse_inventorydb');
 
 //Database connection
-ConnectDB();
+//ConnectDB();
 
 const app = express();
 app.use(cors());
